@@ -15,7 +15,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node", "expect", "jest"]
+    "types": ["node"]
   },
   "include": ["./index.ts"]
 }
