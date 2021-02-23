@@ -1,12 +1,18 @@
-import { IHttpBaseParams } from '../http';
+import * as fs from 'fs';
+
+import * as http from '../http/';
 
 export interface IGetPrivateDownload {
-  sample_hash: string;
+  apiKey: string;
+  sampleHash: string;
 }
 
-export function build(params: IGetPrivateDownload): IHttpBaseParams {
-  return {
-    url: '/private/user/malpedia',
-    auth: params.api_key
-  };
+export function exec(
+  client: http.IHttp,
+  params: IGetPrivateDownload
+): Promise<fs.ReadStream> {
+  return client.get({
+    auth: params.apiKey,
+    url: `/private/download/${params.sampleHash}`
+  });
 }

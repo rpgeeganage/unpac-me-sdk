@@ -410,30 +410,6 @@ export interface components {
 }
 
 export interface paths {
-  '/private/upload/': {
-    /** Queues sample for unpacking */
-    post: operations['postPrivateUpload'];
-  };
-  '/private/status/{unpack_id}': {
-    /** Returns a submission status */
-    get: operations['getPrivateUnpackStatus'];
-  };
-  '/private/results/{unpack_id}': {
-    /** Returns unpack results */
-    get: operations['getPrivateResults'];
-  };
-  '/private/history': {
-    /** Returns submission history */
-    get: operations['getPrivateHistory'];
-  };
-  '/private/search/hash/{sample_hash}': {
-    /** Returns submission history */
-    get: operations['getPrivateSearchbyHash'];
-  };
-  '/private/download/{sample_hash}': {
-    /** Downloads sample binary */
-    get: operations['getPrivateDownload'];
-  };
   '/private/feed/unpacked': {
     /** Returns full feed of unpacked samples */
     get: operations['getPrivateFeed'];
@@ -461,91 +437,6 @@ export interface paths {
 }
 
 export interface operations {
-  /** Returns a submission status */
-  getPrivateUnpackStatus: {
-    parameters: {
-      path: {
-        /** ID of unpacking submission */
-        unpack_id: string;
-      };
-    };
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          'application/json': components['schemas']['UnpackStatus'];
-        };
-      };
-    };
-  };
-  /** Returns unpack results */
-  getPrivateResults: {
-    parameters: {
-      path: {
-        /** ID of unpacking submission */
-        unpack_id: string;
-      };
-    };
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          'application/json': components['schemas']['UnpackResults'];
-        };
-      };
-    };
-  };
-  /** Returns submission history */
-  getPrivateHistory: {
-    parameters: {
-      query: {
-        /** Scroll history to cursor */
-        cursor?: number;
-      };
-    };
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          'application/json': components['schemas']['History'];
-        };
-      };
-    };
-  };
-  /** Returns submission history */
-  getPrivateSearchbyHash: {
-    parameters: {
-      path: {
-        /** SHA256 hash of parent sample */
-        sample_hash: string;
-      };
-    };
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          'application/json': components['schemas']['SearchResults'];
-        };
-      };
-    };
-  };
-  /** Downloads sample binary */
-  getPrivateDownload: {
-    parameters: {
-      path: {
-        /** SHA256 hash of sample to download */
-        sample_hash: string;
-      };
-    };
-    responses: {
-      /** successful operation */
-      200: {
-        content: {
-          'application/octet-stream': string;
-        };
-      };
-    };
-  };
   /** Returns full feed of unpacked samples */
   getPrivateFeed: {
     parameters: {
