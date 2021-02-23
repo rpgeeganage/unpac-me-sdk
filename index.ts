@@ -1,1 +1,1 @@
-export * from './interfaces';
+export * as interfaces from './interfaces';
