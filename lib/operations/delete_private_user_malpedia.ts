@@ -1,12 +1,16 @@
-import { IHttpBaseParams } from '../http';
+import * as http from '../http';
+import * as entities from '../entities';
 
 export interface IDeletePrivateUserMalpedia {
-  api_key: string;
+  apiKey: string;
 }
 
-export function build(params: IDeletePrivateUserMalpedia): IHttpBaseParams {
-  return {
-    url: '/private/user/malpedia',
-    auth: params.api_key
-  };
+export function exec(
+  client: http.IHttp,
+  params: IDeletePrivateUserMalpedia
+): Promise<entities.IUserMalpedia> {
+  return client.delete({
+    auth: params.apiKey,
+    url: '/private/user/malpedia'
+  });
 }

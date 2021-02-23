@@ -16,9 +16,12 @@ export function exec(
   return client.upload({
     auth: params.apiKey,
     url: '/private/upload/',
-    query: {
-      private: params.private
-    },
+    query:
+      params.private !== undefined
+        ? {
+            private: params.private
+          }
+        : undefined,
     file: params.file
   });
 }

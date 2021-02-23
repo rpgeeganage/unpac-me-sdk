@@ -11,9 +11,11 @@ export function exec(
   params: IGetPrivateHistory
 ): Promise<entities.IHistory> {
   return client.get({
-    query: {
-      cursor: params.cursor
-    },
+    query: params.cursor
+      ? {
+          cursor: params.cursor
+        }
+      : undefined,
     auth: params.apiKey,
     url: '/private/history'
   });

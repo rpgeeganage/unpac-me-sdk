@@ -26,4 +26,5 @@ export * from './status';
 export * from './unpack_results';
 export * from './unpack_status';
 export * from './user_access';
+export * from './user_malpedia';
 export * from './upload';
